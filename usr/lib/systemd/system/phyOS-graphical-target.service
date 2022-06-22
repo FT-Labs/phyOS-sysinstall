@@ -1,0 +1,10 @@
+[Unit]
+Description=phyOS graphical target
+Before=systemd-user-sessions.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/phyOS-graphical-target
+
+[Install]
+WantedBy=multi-user.target
