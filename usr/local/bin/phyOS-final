@@ -7,6 +7,7 @@ sed -i "s/#AutoEnable=false/AutoEnable=true/g" /etc/bluetooth/main.conf
 echo 'load-module module-switch-on-connect' | sudo tee --append /etc/pulse/default.pa
 rm -f /etc/sudoers.d/g_wheel
 rm -f /etc/polkit-1/rules.d/49-nopasswd_global.rules
+rm -f /etc/sddm.conf.d/autologin.conf
 #rm -r /etc/systemd/system/etc-pacman.d-gnupg.mount
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
