@@ -10,7 +10,5 @@ rm -f /etc/polkit-1/rules.d/49-nopasswd_global.rules
 rm -f /etc/sddm.conf.d/autologin.conf
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
-sudo mv -f /usr/share/phyos/mkinitcpio.conf /etc/mkinitcpio.conf
-sudo plymouth-set-default-theme -R phyOS
 "$HOME/.local/bin/scripts/phyup" dots
 chmod -v 750 /root
