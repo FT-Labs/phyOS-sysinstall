@@ -11,5 +11,4 @@ rm -f /etc/sddm.conf.d/autologin.conf
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 "$HOME/.local/bin/scripts/phyup" dots
-nvim +PackerSync
 chmod -v 750 /root
