@@ -12,6 +12,5 @@ rm -r /usr/share/xsessions/dwm-dbus.desktop
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 mv /usr/local/share/phyOS/mkinitcpio.conf /etc/mkinitcpio.conf
-plymouth-set-default-theme -R phyOS
 "$HOME/.local/bin/scripts/phyup" dots
 chmod -v 750 /root
