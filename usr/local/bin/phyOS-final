@@ -11,6 +11,7 @@ rm -f /etc/sddm.conf.d/autologin.conf
 rm -r /usr/share/xsessions/dwm-dbus.desktop
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
-mv /usr/local/share/phyOS/mkinitcpio.conf /etc/mkinitcpio.conf
-"$HOME/.local/bin/scripts/phyup" dots
+cp -f /usr/local/share/phyOS/mkinitcpio.conf /etc/mkinitcpio.conf
+cp -f /usr/local/share/phyOS/mkinitcpio.conf /etc/mkinitcpio-nokms.conf
+phyup dots --force
 chmod -v 750 /root
