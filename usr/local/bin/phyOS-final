@@ -12,4 +12,5 @@ rm -r /usr/share/xsessions/dwm-dbus.desktop
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 chmod -v 750 /root
-phyOS-update-kernel-conf
+/usr/local/bin/phyOS-update-kernel-conf
+exit 0
