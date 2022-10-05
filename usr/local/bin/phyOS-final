@@ -11,9 +11,10 @@ rm -f /etc/sddm.conf.d/autologin.conf
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 chmod -v 750 /root
-# cp -f /usr/local/share/phyOS/mkinitcpio.d/linux.ply-encrypt-lvm.preset /etc/mkinitcpio.d/linux.preset
-# cryptdevice=$(lsblk -r | grep -B1 -w 'crypt /' | awk 'NR==1 {print $1}' | xargs -I '%' sudo cryptsetup luksUUID /dev/%)
-# sed -i "36s/.*/cryptdevice=UUID=$cryptdevice:root/" /usr/lib/initcpio/hooks/phy-encrypt
-# sed -i "36s/.*/cryptdevice=UUID=$cryptdevice:root/" /usr/lib/initcpio/hooks/phy-ply-encrypt
-# mkinitcpio -P
+cp -f /usr/local/share/phyOS/mkinitcpio.d/linux.ply-encrypt-lvm.preset /etc/mkinitcpio.d/linux.preset
+cryptdevice=$(lsblk -r | grep -B1 -w 'crypt /' | awk 'NR==1 {print $1}' | xargs -I '%' sudo cryptsetup luksUUID /dev/%)
+sed -i "36s/.*/cryptdevice=UUID=$cryptdevice:root/" /usr/lib/initcpio/hooks/phy-encrypt
+sed -i "36s/.*/cryptdevice=UUID=$cryptdevice:root/" /usr/lib/initcpio/hooks/phy-ply-encrypt
+grub-install
+mkinitcpio -P
 exit 0
