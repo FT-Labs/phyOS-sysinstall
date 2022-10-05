@@ -3,4 +3,4 @@ pacman-key --init
 pacman-key --populate archlinux
 pacman-key --populate chaotic
 pacman-key --populate phyOS
-mv /etc/mkinitcpio.d/phyOS /etc/mkinitcpio.d/linux.preset
+phyOS-update-kernel-conf
