@@ -4,6 +4,6 @@ cryptdev="phycrypt"
 printf "123456" | sudo cryptsetup -q luksFormat "$1"
 printf "123456" | sudo cryptsetup -q luksOpen "$1" $cryptdev
 sudo pvcreate /dev/mapper/$cryptdev
-sudo vgcreate $vg /dev/mapper/$cryptdev
+sudo vgcreate phycrypt-vg /dev/mapper/$cryptdev
 sudo lvcreate -n root -l +100%FREE phycrypt-vg
 sudo mkfs.ext4 /dev/mapper/phycrypt--vg-root
