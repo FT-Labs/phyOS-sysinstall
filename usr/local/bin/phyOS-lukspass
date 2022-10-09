@@ -1,16 +1,17 @@
 #!/bin/bash
 
 while true; do
-    echo "Please enter encryption password:"
-    read pass
-    echo "Please confirm encryption password:"
-    read pass2
+    read -s -p "Please enter encryption password: " pass
+    echo
+    read -s -p "Please confirm encryption password: " pass2
     if [[ $pass = $pass2 ]]; then
         break
     fi
+    echo
     echo "Password's dont match. Please try again."
 done
 
+echo "Password set succesfully."
 echo "#!/bin/bash" > /tmp/phyinstall.conf
 echo "pass=$pass" >> /tmp/phyinstall.conf
 chmod +x /tmp/phyinstall.conf
