@@ -1,8 +1,10 @@
 #!/bin/bash
 
+source /tmp/phyinstall.conf
+
 cryptdev="phycrypt"
-printf "123456" | sudo cryptsetup -q luksFormat "$1"
-printf "123456" | sudo cryptsetup -q luksOpen "$1" $cryptdev
+printf $pass | sudo cryptsetup -q luksFormat "$1"
+printf $pass | sudo cryptsetup -q luksOpen "$1" $cryptdev
 sudo pvcreate /dev/mapper/$cryptdev
 sudo vgcreate phycrypt-vg /dev/mapper/$cryptdev
 sudo lvcreate -n root -l +100%FREE phycrypt-vg
