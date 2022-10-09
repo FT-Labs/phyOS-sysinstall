@@ -2,9 +2,16 @@
 
 source /tmp/phyinstall.conf
 
-printf $pass | sudo cryptsetup -q luksFormat "$1"
-printf $pass | sudo cryptsetup -q luksOpen "$1" $lvm_device
-sudo pvcreate /dev/mapper/$lvm_device
-sudo vgcreate phycrypt-vg /dev/mapper/$lvm_device
-sudo lvcreate -n root -l +100%FREE $lvm_device-vg
-sudo mkfs.ext4 /dev/mapper/$lvm_device--vg-root
+if [[ $is_encrypt = "true" ]]; then
+    printf $pass | sudo cryptsetup -q luksFormat "$1"
+    printf $pass | sudo cryptsetup -q luksOpen "$1" $lvm_device
+    sudo pvcreate /dev/mapper/$lvm_device
+    sudo vgcreate $lvm_device-vg /dev/mapper/$lvm_device
+    sudo lvcreate -n root -l +100%FREE $lvm_device-vg
+    sudo mkfs.ext4 /dev/mapper/$lvm_device--vg-root
+else
+    sudo pvcreate "$1"
+    sudo vgcreate $lvm_device-vg "$1"
+    sudo lvcreate -n root -l +100%FREE $lvm_device-vg
+    sudo mkfs.ext4 /dev/mapper/$lvm_device--vg-root
+fi
