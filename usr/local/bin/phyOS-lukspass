@@ -1,17 +1,35 @@
 #!/bin/bash
 
-while true; do
-    read -s -p "Please enter encryption password: " pass
-    echo
-    read -s -p "Please confirm encryption password: " pass2
-    if [[ $pass = $pass2 ]]; then
-        break
-    fi
-    echo
-    echo "Password's dont match. Please try again."
-done
-
-echo "Password set succesfully."
+tput setaf 42
+echo "This installer only supports automatic partitioning and lvm2 installation."
+echo "If you want older features, please install the other version."
+echo "Traditional partitioning wont be available in this iso."
+echo "Do you want luks2 encryption?"
+tput setaf 1
+echo "If it is a laptop, consider using it. Anyone with a live usb can get in your computer in 2 minutes if there is no encryption."
+tput setaf 42
+echo "Press 'y' or 'yes' for encryption."
 echo "#!/bin/bash" > /tmp/phyinstall.conf
-echo "pass=$pass" >> /tmp/phyinstall.conf
 chmod +x /tmp/phyinstall.conf
+read is_encrypt
+
+if [[ $is_encrypt = "y" ]] || [[ $is_encrypt = "yes" ]]; then
+    while true; do
+        pass=$(gum input --password --placeholder "Please enter encryption password: ")
+        pass2=$(gum input --password --placeholder "Please confirm encryption password: ")
+        if [[ ! -z $pass ]] && [[ $pass = $pass2 ]]; then
+            break
+        fi
+        echo
+        echo "Password's dont match. Please try again."
+    done
+
+    echo "Password set succesfully."
+    echo "pass=$pass" >> /tmp/phyinstall.conf
+    echo "is_encrypt=yes" >> /tmp/phyinstall.conf
+    echo "lvm_device=phyos" >> /tmp/phyinstall.conf
+    exit 0
+fi
+
+echo "is_encrypt=no" >> /tmp/phyinstall.conf
+echo "lvm_device=phyos" >> /tmp/phyinstall.conf

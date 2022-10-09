@@ -8,6 +8,7 @@ echo 'load-module module-switch-on-connect' | sudo tee --append /etc/pulse/defau
 rm -f /etc/sudoers.d/g_wheel
 rm -f /etc/polkit-1/rules.d/49-nopasswd_global.rules
 rm -f /etc/sddm.conf.d/autologin.conf
+rm -f /etc/mkinitcpio.conf
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 chmod -v 750 /root
