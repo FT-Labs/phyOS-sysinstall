@@ -1,4 +1,0 @@
-#!/bin/bash
-
-dev=$(mount | grep phycrypt--vg-root | awk '{print $3}')
-sudo /usr/local/bin/phyOS-genfstab -U $dev >> $dev/etc/fstab
