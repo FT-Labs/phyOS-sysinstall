@@ -1,5 +1,4 @@
 #!/bin/bash
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key --populate chaotic
 pacman-key --populate phyOS

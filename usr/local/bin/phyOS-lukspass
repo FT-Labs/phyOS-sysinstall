@@ -12,6 +12,8 @@ echo "Press 'y' or 'yes' for encryption."
 echo "#!/bin/bash" > /tmp/phyinstall.conf
 chmod +x /tmp/phyinstall.conf
 read is_encrypt
+echo "Do you want a swap space? Choose one of the options below: "
+swap=$(gum choose "None" "1G" "2G" "3G" "4G" "5G" "8G" "16G" "32G" "48G")
 
 if [[ $is_encrypt = "y" ]] || [[ $is_encrypt = "yes" ]]; then
     while true; do
@@ -27,11 +29,10 @@ if [[ $is_encrypt = "y" ]] || [[ $is_encrypt = "yes" ]]; then
     echo "Password set succesfully."
     echo "pass=$pass" >> /tmp/phyinstall.conf
     echo "is_encrypt=true" >> /tmp/phyinstall.conf
+    echo "lvm_device=phyoscrypt" >> /tmp/phyinstall.conf
+else
+    echo "is_encrypt=false" >> /tmp/phyinstall.conf
     echo "lvm_device=phyos" >> /tmp/phyinstall.conf
-    calamares_polkit
-    exit 0
 fi
-
-echo "is_encrypt=no" >> /tmp/phyinstall.conf
-echo "lvm_device=phyos" >> /tmp/phyinstall.conf
-calamares_polkit
+echo "swap=$swap" >> /tmp/phyinstall.conf
+phyOS-welcome-app

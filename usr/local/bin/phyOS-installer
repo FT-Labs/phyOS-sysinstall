@@ -7,11 +7,17 @@ if [[ $is_encrypt = "true" ]]; then
     printf $pass | sudo cryptsetup -q luksOpen "$1" $lvm_device
     sudo pvcreate -f /dev/mapper/$lvm_device
     sudo vgcreate -f $lvm_device-vg /dev/mapper/$lvm_device
+    if [[ $swap != "None" ]]; then
+        sudo lvcreate -L $swap -n swap $lvm_device-vg
+    fi
     sudo lvcreate -n root -l +100%FREE $lvm_device-vg
     sudo mkfs.ext4 /dev/mapper/$lvm_device--vg-root
 else
     sudo pvcreate -f "$1"
     sudo vgcreate -f $lvm_device-vg "$1"
+    if [[ $swap != "None" ]]; then
+        sudo lvcreate -L $swap -n swap $lvm_device-vg
+    fi
     sudo lvcreate -n root -l +100%FREE $lvm_device-vg
     sudo mkfs.ext4 /dev/mapper/$lvm_device--vg-root
 fi
