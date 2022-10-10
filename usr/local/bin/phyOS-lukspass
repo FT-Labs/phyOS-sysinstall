@@ -36,4 +36,4 @@ else
     echo "lvm_device=phyos" >> /tmp/phyinstall.conf
 fi
 echo "swap=$swap" >> /tmp/phyinstall.conf
-phyOS-welcome-app & disown
+phyOS-welcome-app disown
