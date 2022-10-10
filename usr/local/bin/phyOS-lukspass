@@ -26,7 +26,7 @@ if [[ $is_encrypt = "y" ]] || [[ $is_encrypt = "yes" ]]; then
 
     echo "Password set succesfully."
     echo "pass=$pass" >> /tmp/phyinstall.conf
-    echo "is_encrypt=yes" >> /tmp/phyinstall.conf
+    echo "is_encrypt=true" >> /tmp/phyinstall.conf
     echo "lvm_device=phyos" >> /tmp/phyinstall.conf
     calamares_polkit
     exit 0

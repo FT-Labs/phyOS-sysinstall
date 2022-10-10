@@ -2,7 +2,7 @@
 Name=phyOS Welcome
 GenericName=phyOS Welcome
 Comment=Welcome App for phyOS installation
-Exec=/usr/local/bin/phyOS-welcome-app
+Exec=st -e /usr/local/bin/phyOS-lukspass
 Icon=phyOS-logo
 Terminal=false
 Type=Application
