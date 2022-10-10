@@ -31,8 +31,9 @@ if [[ $is_encrypt = "y" ]] || [[ $is_encrypt = "yes" ]]; then
     echo "is_encrypt=true" >> /tmp/phyinstall.conf
     echo "lvm_device=phyoscrypt" >> /tmp/phyinstall.conf
 else
+    sudo cp -f /etc/calamares/modules/partition-noluks2.conf /etc/calamares/modules/partition.conf
     echo "is_encrypt=false" >> /tmp/phyinstall.conf
     echo "lvm_device=phyos" >> /tmp/phyinstall.conf
 fi
 echo "swap=$swap" >> /tmp/phyinstall.conf
-phyOS-welcome-app
+phyOS-welcome-app & disown
