@@ -13,6 +13,7 @@ if [[ $is_encrypt = "true" ]]; then
     sudo lvcreate -n root -l +100%FREE $lvm_device-vg
     sudo mkfs.ext4 /dev/mapper/$lvm_device--vg-root
 else
+    sudo mv /etc/calamares/partition-noluks2.conf /etc/calamares/partition.conf
     sudo pvcreate -f "$1"
     sudo vgcreate -f $lvm_device-vg "$1"
     if [[ $swap != "None" ]]; then
