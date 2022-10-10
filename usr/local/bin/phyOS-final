@@ -12,6 +12,8 @@ rm -f /etc/mkinitcpio.conf
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 chmod -v 750 /root
+swp=$(ls /dev/mapper | grep swap | awk '{print $1}')
+[[ ! -z $swp ]] && mkswap /dev/mapper/$swp && swapon -v /dev/mapper/$swp && echo "/dev/mapper/$swp swap swap defaults 0 0" >> /etc/fstab
 /usr/local/bin/phyOS-update-kernel-conf
 /usr/bin/grub-install
 /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
