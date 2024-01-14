@@ -1,6 +1,3 @@
 #!/bin/bash
 
-package=sddm
-if pacman -Qq $package > /dev/null ; then
-  ln -sf /usr/lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service
-fi
+ln -sf /usr/lib/systemd/system/sddm.service /etc/systemd/system/display-manager.service

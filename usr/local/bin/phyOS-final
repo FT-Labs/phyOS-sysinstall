@@ -12,6 +12,7 @@ rm -f /etc/mkinitcpio.conf
 rm /root/{.automated_script.sh,.zlogin}
 mv /etc/phyOS-release /etc/lsb-release
 chmod -v 750 /root
+rm /etc/mkinitcpio.d/linux.preset
 /usr/local/bin/phyOS-update-kernel-conf
 /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
 swp=$(ls /dev/mapper | grep swap | awk '{print $1}')
