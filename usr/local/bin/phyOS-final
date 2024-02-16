@@ -17,4 +17,5 @@ rm /etc/mkinitcpio.d/linux.preset
 /usr/bin/grub-mkconfig -o /boot/grub/grub.cfg
 swp=$(ls /dev/mapper | grep swap | awk '{print $1}')
 [[ ! -z $swp ]] && mkswap /dev/mapper/$swp && swapon -v /dev/mapper/$swp && echo "/dev/mapper/$swp swap swap defaults 0 0" >> /etc/fstab
+sed -i 's|bin/bash|bin/zsh|g' /etc/passwd
 exit 0
